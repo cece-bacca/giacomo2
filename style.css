@@ -1,0 +1,881 @@
+/* Importazione dei font da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --primary-color: #1986a0;
+  --secondary-color: #1C1C1C; /* Nero Grafite */
+  --text-color: #F0F8FF; /* Bianco Ghiaccio */
+  --background-color: #F0F8FF; /* Bianco Ghiaccio */
+  --accent-color: #D3D3D3; /* Grigio Perla */
+  --hover-color: rgba(211, 211, 211, 0.2); /* Grigio Perla con opacità */
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 10px rgba(28, 28, 28, 0.2); /* Nero Grafite con opacità */
+  
+  /* Nuove variabili per i font */
+  --title-font: 'Playfair Display', serif;
+  --body-font: 'Lato', sans-serif;
+}
+
+
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body {
+  font-family: var(--body-font);
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  padding-top: 80px; /* Spazio per evitare che l'header fissi copra il contenuto */
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--title-font);
+  font-weight: 700;
+}
+
+
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+  z-index: 1000; /* Assicura che l'header stia sopra gli altri elementi */
+}
+
+
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+
+
+nav ul li a {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed);
+}
+
+
+
+nav ul li a:hover {
+  background-color: var(--hover-color);
+}
+
+
+.container-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /*object-fit: cover;*/
+}
+
+
+
+/* Overlay image */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition: opacity var(--transition-speed), transform var(--transition-speed);
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+  width: 50%;  /* Imposta la larghezza al 50% del contenitore */
+  height: auto;  /* Mantieni la proporzione dell'immagine */
+  margin: 0 auto;  /* Centra orizzontalmente l'immagine */
+  display: block;  /* Assicura che l'immagine sia trattata come un blocco per centrarla */
+  margin-top: 20px;  /* Sposta l'immagine di 20px verso il basso */
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+.overlay:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+}
+
+
+
+/* Upload container */
+.upload-container {
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+
+
+/* Warning message */
+.warning-message {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #ff0000;
+  font-weight: bold;
+  margin-top: 0.625rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+}
+
+/* Custom file upload button */
+.custom-file-upload {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  box-shadow: 0 4px 10px rgba(28, 28, 28, 0.3);
+}
+
+
+
+.custom-file-upload:hover {
+  background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(28, 28, 28, 0.5);
+}
+
+
+
+#uploadInput {
+  display: none;
+}
+
+
+
+/* Updated Footer styles */
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+}
+
+
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 1.5rem;
+}
+
+
+
+.footer-section h3 {
+  font-family: var(--title-font);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+
+
+.footer-section p {
+  margin-bottom: 0.5rem;
+}
+
+
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+
+
+.social-icons a {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  transition: color var(--transition-speed), transform 0.3s ease;
+}
+
+
+
+.social-icons a:hover {
+  color: var(--accent-color);
+  transform: scale(1.2);
+}
+
+
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hover-color);
+}
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+
+
+
+  .container {
+    max-width: 85%;
+    padding-bottom: 60%;
+  }
+
+
+
+  .custom-file-upload {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+
+
+  .footer-content {
+    flex-direction: column;
+  }
+
+
+
+  .footer-section {
+    margin-bottom: 2rem;
+  }
+
+
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+
+
+/* Disabilita l'immagine di sfondo per la Privacy Policy */
+body.privacy-policy-page .container {
+  background-image: none;
+  /*background-size: 100% 100%;*/
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: none;
+}
+
+
+
+/* Privacy Policy Page Styles */
+.privacy-policy {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  font-size: 1rem;
+  background-color: var(--text-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  height: auto; /* Permette alla sezione di crescere con il contenuto */
+  overflow: visible; /* Rende il contenuto visibile anche se è più lungo */
+}
+
+
+
+.privacy-policy h2 {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+
+
+.privacy-policy p {
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  color: var(--secondary-color);
+}
+
+
+
+/* Page Title */
+.page-title h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  color: var(--primary-color);
+}
+
+
+
+/* About Us / Contact Us Section */
+.about-us, .contact-us {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: var(--text-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+
+
+.about-us h2, .contact-us h2 {
+  font-size: 2.2rem;
+  margin-top: 1.5rem;
+  color: var(--primary-color);
+}
+
+
+
+.about-us p, .contact-us p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  color: var(--secondary-color);
+}
+
+
+
+.about-us ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+
+
+.contact-us form {
+  margin-top: 1.5rem;
+}
+
+
+
+.contact-us form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+
+
+.contact-us form input, .contact-us form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary-color);
+}
+
+
+
+.contact-us form button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+
+
+.contact-us form button:hover {
+  background-color: var(--accent-color);
+}
+
+
+/* Privacy Policy Section */
+.privacy-policy {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  font-size: 1rem;
+  background-color: var(--text-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: visible;  /* Assicurati che il contenuto non sia nascosto */
+  height: auto;  /* Rimuovi eventuali limiti di altezza */
+}
+
+
+
+/* Opzionale, per controllare il comportamento dello scroll */
+.privacy-container {
+  max-height: none;  /* Rimuove limiti di altezza */
+  overflow-y: auto;  /* Aggiunge lo scroll verticale se il contenuto è troppo lungo */
+}
+
+/* Aggiungi un padding destro per spostare la scrollbar più a destra */
+.privacy-container {
+  max-height: none;
+  overflow-y: auto;  /* Aggiunge lo scroll verticale se il contenuto è troppo lungo */
+  padding-right: 10px;  /* Puoi regolare questo valore in base a quanto vuoi spostare la scrollbar */
+}
+
+
+/* Disabilita l'immagine di sfondo per la pagina "Chi Siamo" */
+body.chi-siamo-page .container {
+  background-image: none;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: none;
+}
+
+
+/* Modifiche solo per la pagina Chi Siamo */
+.chi-siamo-page .about-us {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow: hidden;
+  height: auto;
+}
+
+
+
+.chi-siamo-page .about-us p, 
+.chi-siamo-page .about-us ul {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+
+
+/* Imposta lo sfondo della pagina Chi Siamo senza interferire con le altre */
+.chi-siamo-page {
+  background-color: #F0F8FF;
+}
+
+
+
+
+/* Modifiche solo per la pagina Privacy Policy */
+.privacy-policy-page .privacy-policy {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow: auto;
+  height: auto;
+}
+
+
+
+.privacy-policy-page .privacy-policy p, 
+.privacy-policy-page .privacy-policy ul {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+
+
+/* Imposta lo sfondo della pagina Privacy Policy senza interferire con le altre */
+.privacy-policy-page {
+  background-color: #F0F8FF;
+}
+
+
+
+/* Footer specifico per la pagina Privacy Policy */
+.privacy-policy-page footer {
+  position: relative;
+  width: 100%;
+  padding: 40px 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+
+
+/* Disabilita la scrollbar specifica per la pagina Privacy Policy */
+body.privacy-policy-page {
+  overflow: auto;  /* Nasconde la scrollbar */
+  height: 100vh;     /* Impedisce l'altezza maggiore rispetto alla finestra */
+  width: 100%;       /* Assicura che la larghezza non vada oltre la finestra */
+}
+
+
+
+.privacy-policy-page .privacy-policy {
+  height: auto;      /* Rimuove eventuali limiti di altezza */
+  overflow: visible; /* Assicura che il contenuto non venga tagliato */
+}
+
+
+
+.privacy-policy-page .privacy-policy {
+  height: auto;      /* Permette alla sezione di crescere con il contenuto */
+  overflow: auto; /* Rende il contenuto visibile anche se è più lungo */
+}
+
+
+.privacy-container {
+  overflow: hidden; /* Questo rimuove la scrollbar interna */
+}
+
+
+body {
+  overflow-y: auto; /* Rende la pagina scorrevole verticalmente */
+}
+
+
+
+/* Main container */
+.container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-bottom: 0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  /*background-image: url("giacomodiam.jpg");*/
+  background-size: 90% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+
+
+/* Footer unico per tutte le pagine */
+footer {
+  background-color: var(--primary-color); /* Blu Notte */
+  color: var(--text-color); /* Bianco Ghiaccio */
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+
+
+.social-icons a:hover {
+  color: var(--accent-color); /* Grigio Perla con opacità */
+  transform: scale(1.2);
+}
+
+
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hover-color); /* Grigio Perla con opacità */
+}
+
+
+
+/* Responsività per il footer */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+/* Stile footer globale */
+footer {
+  background-color: var(--primary-color); /* Blu Notte, uguale per tutte le pagine */
+  color: var(--text-color); /* Bianco Ghiaccio */
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+
+}
+
+/* Rimuove il colore specifico del footer nelle pagine "privacy-policy" e "chi siamo" */
+body.privacy-policy-page footer,
+body.about-us-page footer {
+  background-color: var(--primary-color); /* Blu Notte per tutte le pagine */
+}
+
+.background-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bg-btn {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  background-color: #1986a0;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.bg-btn:hover {
+  background-color: #46bddb;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px; /* Space between icons */
+}
+
+.icon img {
+  width: 30px; /* Adjust the size as needed */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.2s;
+}
+
+.icon img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center; /* Sposta le icone a destra */
+  gap: 10px; /* Distanza tra le icone */
+}
+
+.base-image {
+  width: 100%;  /* Imposta la larghezza al 100% del contenitore */
+  height: 100vh;  /* Imposta l'altezza al 100% della viewport */
+  object-fit: cover; /* Mantiene l'aspetto dell'immagine senza distorsioni */
+}
+
+.container-carlini {
+  height: auto;
+  background-size: 90% auto;
+}
+
+.container-carlini {
+  position: relative;
+  width: 33%; /* Riduce la larghezza rispetto al 100% originale */
+  max-width: 1000px; /* Ridotto ulteriormente da 800px */
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  background-size: contain; /* Mantiene l'immagine completamente visibile */
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 2rem auto;
+}
+
+.container-content img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Garantisce che l'immagine sia completamente visibile */
+}
+
+.pngOverlay {
+  width: 200px;   /* Puoi cambiare questa misura */
+  height: 200px;  /* Puoi cambiare anche questa */
+  object-fit: contain; /* Mantiene il rapporto di aspetto originale dell'immagine */
+  margin-top: -10px;
+}
+
+/* Stile per il cursore di ridimensionamento */
+.resizeSlider {
+  width: 100%;
+  max-width: 300px;  /* Impostiamo una larghezza massima */
+  margin: 20px 0;
+}
+
+.sliderValue {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+/* Stile per l'immagine PNG caricata */
+.pngOverlay {
+  width: 200px;   /* Imposta una larghezza iniziale */
+  height: 200px;  /* Imposta un'altezza iniziale */
+  object-fit: contain;
+  display: none;  /* L'immagine PNG non è visibile inizialmente */
+  transition: all 0.2s ease-in-out; /* Per una transizione morbida */
+}
+
+.resize-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 2%;
+}
+
+.price-panel {
+  flex: 1; /* Occupa meno spazio */
+  max-width: 300px; /* Larghezza massima */
+  background-color: #F0F8FF; /* Colore di sfondo */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-carlini {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /* Aumentiamo la larghezza massima */
+}
+
+.base-image {
+  width: 100%; /* Adatta l'immagine al contenitore */
+  max-width: 500px; /* Imposta una dimensione massima */
+  height: auto;
+}
+
+#backgroundImage {
+  width: 65%; /* Adatta l'immagine al contenitore */
+  max-width: 800px; /* Aumenta la dimensione massima */
+  height: auto;
+  display: block;
+}
+
+.container-content {
+  flex: 2; /* Riduciamo la proporzione per dare più spazio all'immagine */
+  width: 100%;
+  max-width: 800px; /* Aumentiamo la grandezza massima */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-panel {
+  flex: 1;
+  max-width: 350px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.price-panel h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-family: var(--title-font);
+  color: var(--text-color);
+}
+
+.price-panel select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: var(--border-radius);
+  border: none;
+  font-size: 1rem;
+  background: var(--accent-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.price-panel select:hover {
+  background: var(--hover-color);
+}
+
+.price-panel h3 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+#checkoutButton {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-color);
+  background: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  box-shadow: var(--box-shadow);
+}
+
+#checkoutButton:hover {
+  background: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+.container-carlini {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+

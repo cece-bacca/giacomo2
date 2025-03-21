@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contattaci</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        var o_options = {
+            domain: 'cebf-151-61-240-183.ngrok-free.app',
+            load: 'auth,customForm,emailList,leadCapture,nocode,profile,support'
+        };
+        </script>
+        <script src="https://cdn.outseta.com/outseta.min.js"
+                data-options="o_options">
+        </script>
+</head>
+<body class="contatti-page">
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="prova sito 2.html">Home</a></li>
+                <li><a href="chi-siamo.html">Chi siamo</a></li>
+                <li><a href="contatti.html">Contattaci</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="diamanti-naturali.html">Diamanti Naturali</a></li>
+                <li><a href="diamanti-labgrown.html">Diamanti Labgrown</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>Contattaci</h1>
+    </div>
+
+    <!-- Contatti Section -->
+    <section class="contact-us">
+        <h2>Inviaci un messaggio</h2>
+        <form action="submit_form.php" method="POST">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Messaggio</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Invia Messaggio</button>
+        </form>
+    </section>
+
+    <!-- Footer aggiunto -->
+    <footer>
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Chi siamo</h3>
+            <p>Scopri di più su di noi.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Contatti</h3>
+            <p>Email: info@diamantidilusso.it</p>
+            <p>Telefono: +39 123 456 7890</p>
+          </div>
+          <div class="footer-section">
+            <h3>Seguici</h3>
+            <div class="social-icons"> 
+              <a href="#" class="icon">
+                  <img src="facebook.png" alt="Facebook">
+              </a>
+              <a href="#" class="icon">
+                  <img src="instagram.png" alt="Instagram">
+              </a>
+              <a href="#" class="icon">
+                  <img src="X.png" alt="X">
+              </a>
+          </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025, Tutti i diritti riservati</p>
+        </div>
+      </footer>
+</body>
+</html>

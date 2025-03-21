@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamanti di Lusso - Upload PNG senza sfondo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+      var o_options = {
+          domain: 'cebf-151-61-240-183.ngrok-free.app',
+          load: 'auth,customForm,emailList,leadCapture,nocode,profile,support'
+      };
+      </script>
+      <script src="https://cdn.outseta.com/outseta.min.js"
+              data-options="o_options">
+      </script>
+</head>
+<body>
+    <!-- Header con 3 collegamenti -->
+    <header>
+        <nav>
+            <ul>
+              <li><a href="prova sito 2.html">Home</a></li>
+              <li><a href="chi-siamo.html">Chi siamo</a></li>
+              <li><a href="contatti.html">Contattaci</a></li>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="diamanti-naturali.html">Diamanti Naturali</a></li>
+              <li><a href="diamanti-labgrown.html">Diamanti Labgrown</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 class="page-title">PERSONALIZZA IL TUO NUOVO DIAMANTE</h1>
+
+      <div class="container-carlini">
+        <div class="container-content">
+          <img id="backgroundImage" src="sfondo1.jpg" class="base-image" alt="Immagine di base">
+          <img id="pngOverlay" class="overlay" alt="PNG Overlay">
+        </div>
+      
+        <!-- Pannello a destra per selezionare il tipo di diamante, la caratura e mostrare il prezzo -->
+        <div class="price-panel">
+          <h2>Seleziona il Tipo di Diamante</h2>
+          <select id="diamondType">
+            <option value="natural">Diamante Naturale</option>
+            <option value="labgrown">Diamante LabGrown</option>
+          </select>
+      
+          <h2>Seleziona la Caratura</h2>
+          <select id="caratSelect">
+            <option value="0.5" data-natural="2.500" data-labgrown="500">0.5 ct</option>
+            <option value="1" data-natural="7.500" data-labgrown="800">1 ct</option>
+            <option value="2" data-natural="30.000" data-labgrown="1.500">2 ct</option>
+            <option value="3" data-natural="90.000" data-labgrown="2.000">3 ct</option>
+          </select>
+      
+          <h3>Prezzo: <span id="priceDisplay">€2,500</span></h3>
+
+          <button id="checkoutButton">Acquista ora</button>
+        </div>
+      </div>
+
+      <script>
+        function updatePrice() {
+          const diamondType = document.getElementById("diamondType").value;
+          const selectedOption = document.getElementById("caratSelect").options[document.getElementById("caratSelect").selectedIndex];
+          
+          let price;
+          if (diamondType === "natural") {
+            price = selectedOption.getAttribute("data-natural");
+          } else {
+            price = selectedOption.getAttribute("data-labgrown");
+          }
+      
+          document.getElementById("priceDisplay").textContent = "€" + price;
+        }
+      
+        document.getElementById("diamondType").addEventListener("change", updatePrice);
+        document.getElementById("caratSelect").addEventListener("change", updatePrice);
+      </script>
+
+    <div class="background-buttons">
+      <button class="bg-btn" data-image="sfondo1.png">Brillante</button>
+      <button class="bg-btn" data-image="sfondo2.png">Smeraldo</button>
+      <button class="bg-btn" data-image="sfondo3.png">Cuscino</button>
+    </div>
+  
+
+    <!-- Messaggio di avviso -->
+    <p class="warning-message">⚠️ Carica solo immagini PNG senza sfondo per un effetto migliore!</p>
+
+    <!-- Cursore per ridimensionare e input per dimensioni -->
+    <div class="resize-container">
+        <label for="resizeSlider">Modifica dimensione PNG:</label>
+        <input type="range" id="resizeSlider" min="50" max="500" value="200" step="1">
+        <span id="sliderValue">200px</span>
+        <!-- Input per numero di pixel -->
+        <input type="number" id="resizeInput" min="50" max="500" value="200" step="1" style="width: 60px; margin-left: 10px;">
+    </div>
+
+    <div class="upload-container">
+        <label for="uploadInput" class="custom-file-upload">📂 Carica PNG</label>
+        <input type="file" id="uploadInput" accept="image/png">
+    </div>
+
+    <!-- Footer aggiunto -->
+    <footer>
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Info</h3>
+            <p>Veronik Watches S.R.L.</p>
+            <p>Corso Isonzo 88</p>
+            <p>44121 Ferrara</p>
+            <p>P.IVA 02169860380</p>
+          </div>
+          <div class="footer-section">
+            <h3>Contatti</h3>
+            <p>Email: veroniklaser@gmail.com</p>
+            <p>Telefono: +39 0532 1717 507</p>
+          </div>
+          <div class="footer-section">
+            <h3>Seguici</h3>
+            <div class="social-icons"> 
+              <a href="#" class="icon">
+                  <img src="facebook.png" alt="Facebook">
+              </a>
+              <a href="#" class="icon">
+                  <img src="instagram.png" alt="Instagram">
+              </a>
+              <a href="#" class="icon">
+                  <img src="X.png" alt="X">
+              </a>
+          </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025, Tutti i diritti riservati</p>
+        </div>
+      </footer>
+
+    <script>
+        document.getElementById("uploadInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const overlay = document.getElementById("pngOverlay");
+                    overlay.src = e.target.result;
+                    overlay.style.display = "block";
+
+                    // Attiva animazione (fade-in + scale-in)
+                    setTimeout(() => {
+                        overlay.style.opacity = "1";
+                        overlay.style.transform = "translate(-50%, -50%) scale(1)";
+                    }, 50);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Gestisci la modifica della dimensione con il cursore
+        document.getElementById("resizeSlider").addEventListener("input", function(event) {
+            const size = event.target.value; // Ottieni il valore del cursore
+            const overlay = document.getElementById("pngOverlay");
+
+            // Imposta la larghezza e altezza dell'immagine
+            overlay.style.width = size + "px"; 
+            overlay.style.height = size + "px"; 
+
+            // Aggiorna il valore del cursore visibile
+            document.getElementById("sliderValue").textContent = size + "px";
+
+            // Aggiorna il valore del campo di input
+            document.getElementById("resizeInput").value = size;
+        });
+
+        // Gestisci la modifica della dimensione con l'input numerico
+        document.getElementById("resizeInput").addEventListener("input", function(event) {
+            const size = event.target.value; // Ottieni il valore del campo di input
+            const overlay = document.getElementById("pngOverlay");
+
+            // Imposta la larghezza e altezza dell'immagine
+            overlay.style.width = size + "px"; 
+            overlay.style.height = size + "px"; 
+
+            // Aggiorna il valore del cursore
+            document.getElementById("resizeSlider").value = size;
+
+            // Aggiorna il valore visibile del cursore
+            document.getElementById("sliderValue").textContent = size + "px";
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

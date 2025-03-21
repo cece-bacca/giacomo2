@@ -37,7 +37,7 @@ document.getElementById("checkoutButton").addEventListener("click", async functi
     console.log("Dati ordine raccolti:", orderData);
 
     try {
-        const response = await fetch("http://localhost:3000/api/send-order", { // Invia al server locale
+        const response = await fetch("https://api.outseta.com/orders", { // Invia al server locale
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(orderData)

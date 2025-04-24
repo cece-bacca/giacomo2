@@ -1,59 +1,31 @@
-window.onload = function() {
-    // Imposta lo sfondo di default a sfondo1.jpg
-    document.getElementById('backgroundImage').src = 'sfondo1.jpg';
+// script.js
+
+// Questa funzione invia i dati al server backend
+async function sendOrder(data) {
+  try {
+    const response = await fetch('http://localhost:3000/api/send-order', {  // Cambiato per inviare al backend
+      method: 'POST',  // Metodo POST
+      headers: {
+        'Content-Type': 'application/json',  // Indica che invii i dati in formato JSON
+      },
+      body: JSON.stringify(data),  // Converte i dati in formato JSON
+    });
+
+    const responseData = await response.json();  // Ottieni la risposta dal backend
+    console.log('Dati ricevuti dal server:', responseData);
+  } catch (error) {
+    console.error('Errore durante la richiesta al backend:', error);  // Gestione degli errori
+  }
+}
+
+// Esempio di dati da inviare
+const orderData = {
+  tipoDiamante: 'Diamante1',
+  caratura: 1.0,
+  prezzo: '1000',
+  taglio: 'C',
+  immaginePersonalizzata: 'image.png',
 };
 
-// Gestione dei pulsanti per cambiare lo sfondo
-document.querySelectorAll('.bg-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const image = this.getAttribute('data-image');
-        document.getElementById('backgroundImage').src = image;
-
-        // Rimuove la classe "selected" da tutti i pulsanti e aggiunge a quello cliccato
-        document.querySelectorAll(".bg-btn").forEach(btn => btn.classList.remove("selected"));
-        this.classList.add("selected");
-    });
-});
-
-function resizeImage() {
-    var image = document.getElementById("pngOverlay");
-    image.style.width = "50%";  // Modifica la larghezza a 50% della larghezza del contenitore
-    image.style.height = "auto";  // Mantieni la proporzione
-    image.style.margin = "0 auto";  // Centro orizzontale
-    image.style.display = "block";  // Rende l'immagine un elemento di blocco per centrarla
-    image.style.marginTop = "20px";  // Sposta l'immagine di 20px verso il basso (puoi regolarlo)
-} 
-
-document.getElementById("checkoutButton").addEventListener("click", async function () {
-    // Definizione di orderData all'interno della funzione
-    const orderData = {
-        tipoDiamante: document.getElementById("diamondType").value,
-        caratura: document.getElementById("caratSelect").value,
-        prezzo: document.getElementById("priceDisplay").textContent,
-        taglio: document.querySelector(".bg-btn.selected")?.textContent || "N/A",
-        immaginePersonalizzata: document.getElementById("pngOverlay").src
-    };
-
-    console.log("Dati ordine raccolti:", orderData);
-
-    try {
-        const response = await fetch("https://api.outseta.com/orders", { // Invia al server locale
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(orderData)
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            alert("Ordine inviato con successo!");
-            console.log("Risposta dal server:", data);
-        } else {
-            alert("Errore nell'invio dell'ordine!");
-            console.error("Errore dal server:", data);
-        }
-    } catch (error) {
-        console.error("Errore nella richiesta:", error);
-        alert("Errore nell'invio dell'ordine.");
-    }
-});
+// Invio dei dati al server
+sendOrder(orderData);
